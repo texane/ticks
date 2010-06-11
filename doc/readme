@@ -1,0 +1,3 @@
+. you have to adjust the  TICK_CPU_COUNT macro
+to reflect the actual cpu count. todo: make it
+dynamic.
