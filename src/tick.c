@@ -274,8 +274,6 @@ int tick_initialize(unsigned int cpu_count)
     diff_matrix = NULL;
   }
 
-  int64_matrix_print(diff_matrix);
-
   return error;
 }
 
