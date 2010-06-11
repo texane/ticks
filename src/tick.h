@@ -32,10 +32,14 @@ struct tick_counter
 typedef struct tick_counter tick_counter_t;
 
 
-#define TICK_CPU_COUNT 2
+#define TICK_CPU_COUNT 16
 
 
 /* exported */
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 int tick_initialize(unsigned int);
 void tick_cleanup(void);
@@ -46,6 +50,9 @@ uint64_t tick_get_value(const tick_counter_t*);
 void tick_set_value(tick_counter_t*, uint64_t);
 int64_t tick_get_diff(unsigned int, unsigned int);
 
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 
 #endif /* ! TICK_H_INCLUDED */

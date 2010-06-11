@@ -1,4 +1,6 @@
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 #include <sched.h>
 
 #include <inttypes.h>
@@ -68,6 +70,13 @@ int main(int ac, char** av)
     read_ticks_on(&ticks[1], ids[1]);
     tick_sub_counters(&ticks[2], &ticks[1], &ticks[0]);
 
+#ifndef PRId64
+# define PRId64 "ld"
+#endif
+
+#ifndef PRIu64
+# define PRIu64 "lu"
+#endif
     printf("[%u:%u] (%" PRId64 " %" PRIu64 " - %" PRIu64\
 	   " = %" PRIu64 " (%" PRIu64 ")\n",
 	   ids[0], ids[1],
