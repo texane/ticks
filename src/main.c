@@ -29,7 +29,9 @@ static void read_ticks_on(tick_counter_t* ticks, unsigned int id)
 
 static inline void fubar(void)
 {
-  usleep(1000);
+  tick_counter_t ticks[2];
+  tick_read_counter(&ticks[0]);
+  tick_read_counter(&ticks[1]);
 }
 
 

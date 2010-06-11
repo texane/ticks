@@ -23,7 +23,7 @@ typedef struct int64_vector int64_vector_t;
 static int64_vector_t* int64_vector_alloc(unsigned int dim)
 {
   const size_t size =
-    offsetof(int64_vector_t, values) + dim * sizeof(uint64_t);
+    offsetof(int64_vector_t, values) + dim * sizeof(int64_t);
   int64_vector_t* const v = malloc(size);
 
   if (v == NULL)
@@ -243,9 +243,16 @@ int tick_initialize(unsigned int cpu_count)
     }
     else
     {
+      cpu_set_t saved_cpuset;
+      pthread_getaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);
+
       pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);
       pthread_yield();
+
       thread_entry((void*)arg);
+      pthread_setaffinity_np
+	(pthread_self(), sizeof(cpu_set_t), &saved_cpuset);
+      pthread_yield();
     }
   }
 
