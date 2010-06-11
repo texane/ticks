@@ -44,6 +44,7 @@ extern "C" {
 int tick_initialize(unsigned int);
 void tick_cleanup(void);
 void tick_read_counter(tick_counter_t*);
+void tick_read_counter2(tick_counter_t*, unsigned int);
 void tick_sub_counters
 (tick_counter_t*, const tick_counter_t*, const tick_counter_t*);
 uint64_t tick_get_value(const tick_counter_t*);

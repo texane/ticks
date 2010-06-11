@@ -299,6 +299,13 @@ void tick_read_counter(tick_counter_t* c)
 }
 
 
+void tick_read_counter2(tick_counter_t* c, unsigned int id)
+{
+  read_ticks(&c->u);
+  c->id = id;
+}
+
+
 void tick_sub_counters
 (tick_counter_t* res, const tick_counter_t* lhs, const tick_counter_t* rhs)
 {
